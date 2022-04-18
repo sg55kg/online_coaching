@@ -1,23 +1,26 @@
 import logo from './logo.svg';
 import './App.css';
+import { useEffect } from 'react'
+import * as api from './api/users'
+import WriteWeek from './components/WriteWeek';
+import Header from './components/Header';
 
 function App() {
+  //useEffect(() => {
+  //   const test = async () => {
+  //     try {
+  //     const data = await api.getAllUsers()
+  //     console.log(data)
+  //     } catch (error) {
+  //       console.log(error)
+  //     }
+  //   }
+  //   test()
+  // },[])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <WriteWeek />
     </div>
   );
 }
