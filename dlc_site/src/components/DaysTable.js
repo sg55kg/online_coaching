@@ -1,33 +1,19 @@
-import { useState } from 'react'
-import { BsNodePlus } from 'react-icons/bs'
+//import { useState } from 'react'
+import { BsNodePlus, BsGear } from 'react-icons/bs'
+import { useDay } from '../hooks/useDay'
 
 import ExerciseTable from './ExerciseTable'
 
-const DaysTable = ({ day }) => {
+const DaysTable = ({ dayObj }) => {
     // add functionality to click on exercise weight and see lbs/kg
 
-    const [exercises, setExercises] = useState([])
+    const { day, updateDay, addExercise } = useDay(dayObj)
 
-    const addExercise = () => {
-        const newExercise = {
-            type: '',
-            name: '',
-            weight: 0,
-            sets: 0,
-            reps: 0,
-            notes: ''
-        }
-        const prevExercises = [...day.exercises]
-        prevExercises.push(newExercise)
-        setExercises(prevExercises)
-        day.exercises = prevExercises
-        //obv will need to add more thought to this to update back/front end
-    }
-console.log(day.exercises)
     return (
         <div className="write-day-container">
             <div className="write-day-header">
                 <h1>{day.dayOfWeek}</h1>
+                <BsGear className="day-header-gear" style={{ fontSize: '1.5em' }} />
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', height: '5em', justifyContent: 'center' }}>
                 <div className="exercise-header">
@@ -39,7 +25,7 @@ console.log(day.exercises)
                 </div>
                 {day.exercises.length > 0 && day.exercises.map((exercise) => {
                     return (
-                        <ExerciseTable exercise={exercise} />
+                        <ExerciseTable exerciseObj={exercise} />
                     )
                 })}
                 {day.exercises.length < 1 && 

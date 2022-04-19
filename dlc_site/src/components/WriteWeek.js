@@ -53,7 +53,7 @@ const WriteWeek = () => {
         <div className="write-week-container">
             {days.length > 0 && days.map((day) => {
                 return (
-                    <DaysTable day={day} />
+                    <DaysTable dayObj={day} />
                 )
             })}
             <BsPlusCircleDotted className="add-day-btn" style={{ fontSize: '2em' }} onClick={addDay} />

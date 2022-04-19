@@ -1,31 +1,27 @@
 import { useState, useEffect } from 'react'
+import { useExercise } from '../hooks/useExercise'
 import { BiPencil } from 'react-icons/bi'
 import { FcCheckmark } from 'react-icons/fc'
 
-const ExerciseTable = ({ exercise }) => {
+const ExerciseTable = ({ exerciseObj }) => {
     const [editMode, setEditMode] = useState(false)
-    const [exerciseState, setExerciseState] = useState({})
-
+    const { exercise, updateExercise } = useExercise(exerciseObj)
+console.log(exercise)
     useEffect(() => {
-        const exercisePropsCopy = { ...exercise }
-        setExerciseState(exercisePropsCopy)
-    },[])
 
-    useEffect(() => {
-        
     },[])
 
     const handleChange = (event, key) => {
-        const copy = { ...exerciseState, key: event.target.value }
-        setExerciseState(copy)
+        const copy = { ...exercise, [key]: event.target.value }
+        updateExercise(copy)
     }
 
     return(
         <div style={{ display: 'flex', flexDirection: 'row' }}>
             { !editMode && 
             <>
-            <BiPencil style={{ color: 'lightblue', width: '5%', fontSize: '1.5em' }} onClick={() => setEditMode(true)} />
-            <div style={{ width: '95%', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>   
+            <BiPencil style={{ color: 'lightblue', width: '5%', fontSize: '1.5em', margin: 'auto' }} onClick={() => setEditMode(true)} />
+            <div className="exercise-content-row">   
                 <div style={{ width: '15%', fontWeight: 700 }}>{exercise.type !== '' ? exercise.type : '-'}</div>
                 <div style={{ width: '10%', fontWeight: 700 }}>{exercise.weight}</div>
                 <div style={{ width: '10%', fontWeight: 700 }}>{exercise.sets}</div>
@@ -36,13 +32,13 @@ const ExerciseTable = ({ exercise }) => {
             }
             {editMode &&
             <>
-            <FcCheckmark style={{ width: '5%', fontSize: '1.5em' }} onClick={() => setEditMode(false)} />
-            <div style={{ width: '95%', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>   
-                <input type="text" style={{ width: '15%', fontWeight: 700 }} defaultValue={exerciseState.type} onChange={(e) => handleChange(e, 'type')} />
-                <input type="text" style={{ width: '10%', fontWeight: 700 }} defaultValue={exerciseState.weight} onChange={(e) => handleChange(e, 'weight')} />
-                <input type="text" style={{ width: '10%', fontWeight: 700 }} defaultValue={exerciseState.sets} onChange={(e) => handleChange(e, 'sets')}/>
-                <input type="text" style={{ width: '10%', fontWeight: 700 }} defaultValue={exerciseState.reps} onChange={(e) => handleChange(e, 'reps')} />
-                <input type="text" style={{ width: '20%' }} defaultValue={exerciseState.notes} onChange={(e) => handleChange(e, 'notes')} />
+            <FcCheckmark style={{ width: '5%', fontSize: '1.5em', margin: 'auto' }} onClick={() => setEditMode(false)} />
+            <div className="exercise-content-row">   
+                <input type="text" style={{ width: '15%', fontWeight: 700 }} defaultValue={exercise.type} onChange={(e) => handleChange(e, 'type')} />
+                <input type="text" style={{ width: '10%', fontWeight: 700 }} defaultValue={exercise.weight} onChange={(e) => handleChange(e, 'weight')} />
+                <input type="text" style={{ width: '10%', fontWeight: 700 }} defaultValue={exercise.sets} onChange={(e) => handleChange(e, 'sets')}/>
+                <input type="text" style={{ width: '10%', fontWeight: 700 }} defaultValue={exercise.reps} onChange={(e) => handleChange(e, 'reps')} />
+                <input type="text" style={{ width: '20%' }} defaultValue={exercise.notes} onChange={(e) => handleChange(e, 'notes')} />
             </div>
             </>
             }
