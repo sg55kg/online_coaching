@@ -15,13 +15,13 @@ const DaysTable = ({ dayObj }) => {
                 <h1>{day.dayOfWeek}</h1>
                 <BsGear className="day-header-gear" style={{ fontSize: '1.5em' }} />
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', height: '5em', justifyContent: 'center' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', minHeight: '5em', justifyContent: 'center' }}>
                 <div className="exercise-header">
-                    <div>Lift</div>
-                    <div>Weight (kg)</div>
-                    <div>Sets</div>
-                    <div>Reps</div>
-                    <div>Notes</div>
+                    <div style={{ textAlign: 'center', width: '20%' }}>Lift</div>
+                    <div style={{ textAlign: 'center', width: '15%' }}>Weight (kg)</div>
+                    <div style={{ textAlign: 'center', width: '15%' }}>Sets</div>
+                    <div style={{ textAlign: 'center', width: '15%' }}>Reps</div>
+                    <div style={{ textAlign: 'center', width: '35%' }}>Notes</div>
                 </div>
                 {day.exercises.length > 0 && day.exercises.map((exercise) => {
                     return (
