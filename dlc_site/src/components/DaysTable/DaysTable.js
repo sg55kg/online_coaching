@@ -1,8 +1,8 @@
 //import { useState } from 'react'
 import { BsNodePlus, BsGear } from 'react-icons/bs'
-import { useDay } from '../hooks/useDay'
+import { useDay } from './hooks/useDay'
 
-import ExerciseTable from './ExerciseTable'
+import ExerciseTable from '../ExerciseTable/ExerciseTable'
 
 const DaysTable = ({ dayObj }) => {
     // add functionality to click on exercise weight and see lbs/kg

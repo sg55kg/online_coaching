@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { BsPlusCircleDotted } from 'react-icons/bs'
-import DaysTable from './DaysTable'
+import DaysTable from '../DaysTable/DaysTable'
 
 const WriteWeek = () => {
     const [days, setDays] = useState([])

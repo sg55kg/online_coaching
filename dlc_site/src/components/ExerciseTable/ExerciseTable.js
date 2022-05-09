@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useExercise } from '../hooks/useExercise'
+import { useExercise } from './hooks/useExercise'
 import { BiPencil } from 'react-icons/bi'
 import { FcCheckmark } from 'react-icons/fc'
 

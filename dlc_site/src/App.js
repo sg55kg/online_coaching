@@ -1,9 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
 import { useEffect } from 'react'
-import * as api from './api/users'
-import WriteWeek from './components/WriteWeek';
-import Header from './components/Header';
+import { getAllMacroCycles, saveMacroCycle } from './api/macroCycles'
+import WriteWeek from './components/WriteWeek/WriteWeek';
+import Header from './components/Header/Header';
 
 function App() {
   //useEffect(() => {
@@ -17,6 +17,33 @@ function App() {
   //   }
   //   test()
   // },[])
+
+  useEffect(() => {
+    const test = async () => {
+      try {
+        const res = await getAllMacroCycles()
+        console.log(res.data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    //test()
+  },[])
+
+  useEffect(() => {
+    const test = async () => {
+      try {
+        const res = await saveMacroCycle({
+          startDate: Date.now(),
+          totalReps: 5000
+        })
+        console.log(res)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    // test()
+  },[])
   return (
     <div className="App">
       <Header />
