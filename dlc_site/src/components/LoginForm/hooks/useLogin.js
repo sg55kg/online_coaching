@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { login } from '../util/util'
+import { flushSync } from 'react-dom'
 
 export const useLogin = () => {
     const [email, setEmail] = useState('')
@@ -21,8 +22,10 @@ export const useLogin = () => {
 
     const handleLogin = async (event) => {
         event.preventDefault()
-        setLoading(true)
-        setError(null)
+        flushSync(() => {
+            setLoading(true)
+            setError(null)
+        })
         try {
             await login(email, password)
         } catch (error) {
