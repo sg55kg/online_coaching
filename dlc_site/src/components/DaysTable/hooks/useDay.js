@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 
 export const useDay = (dayObj) => {
     const [day, setDay] = useState(dayObj)
-console.log(day)
+
     const addExercise = () => {
         const newExercise = {
             type: '',
