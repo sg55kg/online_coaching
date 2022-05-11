@@ -1,7 +1,7 @@
 import { Card, Form, Alert, Spinner } from 'react-bootstrap'
 import { useLogin } from './hooks/useLogin'
 
-const LoginForm = () => {
+const LoginForm: React.FC = () => {
     
     const { 
         email,

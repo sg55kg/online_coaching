@@ -3,8 +3,12 @@ import { BsPlusCircleDotted } from 'react-icons/bs'
 import DaysTable from '../DaysTable/DaysTable'
 import { useDays } from './hooks/useDays'
 
+interface Day {
+    exercises: Array<any>,
+    date: Date
+}
 
-const WriteWeek = () => {
+const WriteWeek: React.FC = () => {
     
     const { days, addDay } = useDays()
 
@@ -20,9 +24,9 @@ const WriteWeek = () => {
 
     return (
         <div className="write-week-container">
-            {days.length > 0 && days.map((day) => {
+            {days.length > 0 && days.map((dayObj) => {
                 return (
-                    <DaysTable dayObj={day} />
+                    <DaysTable dayObj={dayObj} />
                 )
             })}
             <BsPlusCircleDotted className="add-day-btn" style={{ fontSize: '2em' }} onClick={addDay} />

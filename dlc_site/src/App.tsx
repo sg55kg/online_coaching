@@ -57,12 +57,12 @@ function App() {
       <AuthProvider>
         <div className="App">
           <Routes>
-            <Route exact path="/" element={<LandingPage />} />
+            <Route path="/" element={<LandingPage />} />
             <Route path="*" element={<NotFound />} />
-            <Route exact path="/login" element={<Login />} />
-            <Route exact path="/signup" element={<Signup />} />
-            <PrivateRoute path="/admin" element={<AdminPortal />} />
-            <PrivateRoute path="/:athlete" element={<AthletePortal />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/admin" element={<AdminPortal />} />
+            <Route path="/:athlete" element={<AthletePortal />} />
           </Routes>
         </div>
       </AuthProvider>

@@ -1,26 +1,30 @@
-import { useState } from 'react'
+import React, { MouseEventHandler, useState } from 'react'
 import { login } from '../util/util'
 import { flushSync } from 'react-dom'
 
-export const useLogin = () => {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [error, setError] = useState(null)
-    const [loading, setLoading] = useState(false)
+interface Error {
+    message: string
+}
 
-    const changeEmail = (event) => {
+export const useLogin = () => {
+    const [email, setEmail] = useState<string>('')
+    const [password, setPassword] = useState<string>('')
+    const [error, setError] = useState<Error | null>(null)
+    const [loading, setLoading] = useState<boolean>(false)
+
+    const changeEmail = (event: React.ChangeEvent<HTMLInputElement>): void => {
         setEmail(prev => {
             return event.target.value
         })
     }
 
-    const changePassword = (event) => {
+    const changePassword = (event: React.ChangeEvent<HTMLInputElement>): void => {
         setPassword(prev => {
             return event.target.value
         })
     }
 
-    const handleLogin = async (event) => {
+    const handleLogin = async (event: React.MouseEvent<HTMLButtonElement>): Promise<any> => {
         event.preventDefault()
         flushSync(() => {
             setLoading(true)

@@ -4,7 +4,9 @@ import { useDay } from './hooks/useDay'
 
 import ExerciseTable from '../ExerciseTable/ExerciseTable'
 
-const DaysTable = ({ dayObj }) => {
+
+
+const DaysTable: React.FC<{dayObj: any}> = ({ dayObj }) => {
     // add functionality to click on exercise weight and see lbs/kg
 
     const { day, updateDay, addExercise } = useDay(dayObj)
@@ -12,7 +14,7 @@ const DaysTable = ({ dayObj }) => {
     return (
         <div className="write-day-container">
             <div className="write-day-header">
-                <h1>{day.dayOfWeek}</h1>
+                <h1>{day.date.toLocaleDateString()}</h1>
                 <BsGear className="day-header-gear" style={{ fontSize: '1.5em' }} />
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', minHeight: '5em', justifyContent: 'center' }}>
@@ -29,7 +31,7 @@ const DaysTable = ({ dayObj }) => {
                     )
                 })}
                 {day.exercises.length < 1 && 
-                    <h4 style={{ margin: '.5em' }}>{`No exercises for ${day.dayOfWeek} yet`}</h4>
+                    <h4 style={{ margin: '.5em' }}>{`No exercises for ${day.date.toLocaleDateString()} yet`}</h4>
                 }
                 <div style={{ alignSelf: 'flex-start', marginLeft: '5%'}}>
                 <BsNodePlus className="add-exercise-btn" onClick={addExercise} />

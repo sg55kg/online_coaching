@@ -1,9 +1,23 @@
 import { useState, useEffect } from "react"
 
-export const useDay = (dayObj) => {
-    const [day, setDay] = useState(dayObj)
+interface Exercise {
+    type: string,
+    name: string,
+    weight: number,
+    sets: number,
+    reps: number,
+    notes: string
+}
 
-    const addExercise = () => {
+interface Day {
+    exercises: Array<Exercise>,
+    date: Date
+}
+
+export const useDay = (dayObj: Day) => {
+    const [day, setDay] = useState<Day>(dayObj)
+
+    const addExercise = (): void => {
         const newExercise = {
             type: '',
             name: '',
@@ -17,7 +31,7 @@ export const useDay = (dayObj) => {
         setDay(dayCopy)
     }
 
-    const updateDay = (updatedDay) => {
+    const updateDay = (updatedDay: Day) => {
         setDay(updatedDay)
     }
 

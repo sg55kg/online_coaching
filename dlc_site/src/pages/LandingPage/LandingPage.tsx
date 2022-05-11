@@ -1,6 +1,6 @@
 import Header from '../../components/Header/Header'
 
-const LandingPage = () => {
+const LandingPage: React.FC = () => {
     return (
         <div>
             <Header />

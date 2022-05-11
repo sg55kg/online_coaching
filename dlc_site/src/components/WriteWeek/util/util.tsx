@@ -1,4 +1,4 @@
-export const getDayOfWeek = (daysArrayLength) => {
+export const getDayOfWeek = (daysArrayLength: number) => {
     const CURRENT_YEAR = new Date().getFullYear()
     const CURRENT_MONTH = new Date().getMonth()
 
