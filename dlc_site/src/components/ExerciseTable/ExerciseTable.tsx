@@ -3,16 +3,25 @@ import { useExercise } from './hooks/useExercise'
 import { BiPencil } from 'react-icons/bi'
 import { FcCheckmark } from 'react-icons/fc'
 
-const ExerciseTable = ({ exerciseObj }) => {
-    const [editMode, setEditMode] = useState(false)
+interface Exercise {
+    type: string,
+    name: string,
+    weight: number,
+    sets: number,
+    reps: number,
+    notes: string
+}
+
+const ExerciseTable: React.FC<{exerciseObj: Exercise}> = ({ exerciseObj }) => {
+    const [editMode, setEditMode] = useState<boolean>(false)
     const { exercise, updateExercise } = useExercise(exerciseObj)
-console.log(exercise)
+
     useEffect(() => {
 
     },[])
 
-    const handleChange = (event, key) => {
-        const copy = { ...exercise, [key]: event.target.value }
+    const handleChange = (event: React.FormEvent<HTMLInputElement>, key: string) => {
+        const copy = { ...exercise, [key]: event.currentTarget.value }
         updateExercise(copy)
     }
 

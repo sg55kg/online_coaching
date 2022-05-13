@@ -4,9 +4,21 @@ import { useDay } from './hooks/useDay'
 
 import ExerciseTable from '../ExerciseTable/ExerciseTable'
 
+interface Exercise {
+    type: string,
+    name: string,
+    weight: number,
+    sets: number,
+    reps: number,
+    notes: string
+}
 
+interface Day {
+    exercises: Array<Exercise>,
+    date: Date
+}
 
-const DaysTable: React.FC<{dayObj: any}> = ({ dayObj }) => {
+const DaysTable: React.FC<{dayObj: Day}> = ({ dayObj }) => {
     // add functionality to click on exercise weight and see lbs/kg
 
     const { day, updateDay, addExercise } = useDay(dayObj)
