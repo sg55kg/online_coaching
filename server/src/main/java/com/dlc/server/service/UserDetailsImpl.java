@@ -1,52 +1,62 @@
 package com.dlc.server.service;
 
+import com.dlc.server.model.User;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 public class UserDetailsImpl implements UserDetails {
+
+    private final User user;
+
+    public UserDetailsImpl(User user) {
+        this.user = user;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return user.getAuthorities()
+                .stream()
+                .map((authority) -> new SimpleGrantedAuthority(authority.getAuthority().toString()))
+                .collect(Collectors.toSet());
     }
 
-    public UserDetailsImpl() {
-
+    public static UserDetailsImpl build(User user) {
+        return new UserDetailsImpl(user);
     }
 
-    // TO DO: v
-    public static UserDetailsImpl build() {
-        return null;
-    }
+
 
     @Override
     public String getPassword() {
-        return null;
+        return user.getPasswordHash();
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return user.getDisplayName();
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return user.isAccountNonExpired();
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return user.isAccountNonLocked();
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return user.isCredentialsNonExpired();
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return user.isEnabled();
     }
 }
