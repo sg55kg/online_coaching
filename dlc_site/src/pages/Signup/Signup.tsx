@@ -26,9 +26,9 @@ const Signup: React.FC = () => {
             lastName: Yup.string(),
             email: Yup.string().email(),
             password: Yup.string()
-            passwordConfirm: Yup.string().matches(password)
+           // passwordConfirm: Yup.string().matches(password)
         }),
-        onSubmit: handleSignUp()
+        onSubmit: () => handleSignUp()
     })
 
     
