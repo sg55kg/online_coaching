@@ -27,3 +27,7 @@ export interface MacroCycle {
     team: Team,
     coach: Coach
 }
+
+export interface IRegistrationMode {
+    type: string
+}
