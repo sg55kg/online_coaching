@@ -5,7 +5,7 @@ import { AdminContext, useAdminContext } from "../../contexts/AdminContext"
 
 
 const AdminNav: React.FC = () => {
-    const { teams, coach } = useContext(AdminContext)
+    const { teams, coach } = useAdminContext()
 
     return (
         <Navbar>

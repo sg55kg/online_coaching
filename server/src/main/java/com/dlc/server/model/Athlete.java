@@ -16,7 +16,8 @@ public class Athlete {
     private String name;
     private String email;
     private String passwordHash;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "coach_id")
     private Coach coach;
     private Set<MacroCycle> programs;
     @ManyToOne

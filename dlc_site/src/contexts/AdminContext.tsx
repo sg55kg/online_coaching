@@ -1,5 +1,7 @@
-import React, { createContext, useContext, useState } from "react";
-import { Coach, Team } from "../types/types";
+import React, { createContext, useContext, useEffect, useState } from "react";
+import { getAllCoachAthletes } from "../api/auth/coach";
+import { Athlete, Coach, Team } from "../types/types";
+import { useAuth } from "./AuthContext";
 
 interface IAdminContext {
     teams: Array<Team | never>,
@@ -19,27 +21,37 @@ const defaultValue = {
             email: 'sdollar1@gmail.com',
         }
     }],
-    coach: {
-        id: 1,
-        name: 'Sam Dollar',
-        athletes: [],
-        email: 'sdollar1@gmail.com'
-    }
 }
 
 export const AdminContext = createContext<IAdminContext>(defaultValue)
 
 export const useAdminContext = () => {
-    useContext(AdminContext)
+    return useContext(AdminContext)
 }
 
 export const AdminProvider: React.FC<{children: React.ReactNode}> = ({ children }) => {
-    const [teams, setTeams] = useState<Array<Team | never>>(defaultValue.teams)
-    const [coach, setCoach] = useState<Coach | null>(defaultValue.coach)
+    const [teams, setTeams] = useState<Array<Team | never>>([])
+    const [athletes, setAthletes] = useState<Array<Athlete | never>>([])
+    const { currentUser } = useAuth()
+
+    const callGetAllAthletes: (coachId: number) => Promise<void> = async (coachId) => {
+        try {
+            const res = await getAllCoachAthletes(coachId)
+            setAthletes(res.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(() => {
+        if(currentUser && currentUser.id && athletes.length < 1) {
+            callGetAllAthletes(currentUser.id)
+        }
+    },[currentUser])
 
     const value = {
         teams,
-        coach
+        athletes
     }
 
     return (

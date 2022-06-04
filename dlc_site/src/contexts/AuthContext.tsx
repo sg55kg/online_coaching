@@ -11,7 +11,7 @@ const defaultState = {
 export const AuthContext = createContext<IAuthContext>(defaultState)
 
 export const useAuth = () => {
-    useContext(AuthContext)
+    return useContext(AuthContext)
 }
 
 export const AuthProvider: React.FC<any> = ({ children }) => {

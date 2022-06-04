@@ -16,11 +16,14 @@ public class Coach {
     private String name;
     private String email;
     private String passwordHash;
-    @OneToMany(mappedBy = "team")
+    @OneToMany(mappedBy = "team", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
     private Set<Team> teams;
-    @OneToMany(mappedBy = "athlete")
+    @OneToMany(mappedBy = "athlete", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
     private Set<Athlete> athletes;
-    @OneToMany(mappedBy = "macro_cycle")
+    @OneToMany(mappedBy = "macro_cycle", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
     private Set<MacroCycle> programs;
     private Date joinedOn;
     private Date lastLogin;
