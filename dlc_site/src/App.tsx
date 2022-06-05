@@ -12,6 +12,7 @@ import Signup from './pages/Signup/Signup'
 import PrivateRoute from './routes/PrivateRoute'
 import AdminPortal from './pages/AdminPortal/AdminPortal'
 import AthletePortal from './pages/AthletePortal/AthletePortal'
+import { getToken } from './api/auth/getToken'
 
 function App() {
   //useEffect(() => {
@@ -51,6 +52,18 @@ function App() {
       }
     }
     // test()
+  },[])
+
+  useEffect(() => {
+    const test = async () => {
+      try {
+        //const token = await getToken()
+        //console.log(token)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+   // test()
   },[])
   return (
     <Router>

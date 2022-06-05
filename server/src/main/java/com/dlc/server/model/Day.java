@@ -23,11 +23,11 @@ public class Day {
 
     private boolean isComplete;
 
-    @OneToMany(mappedBy = "day", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "day", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Exercise> exercises;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "week_id", nullable = true)
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "week_id", nullable = true, referencedColumnName = "id", columnDefinition = "integer")
     private Week week;
 
     public Day() {

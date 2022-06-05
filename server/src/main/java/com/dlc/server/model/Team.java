@@ -13,22 +13,28 @@ public class Team {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private BigInteger id;
     private String name;
-    @ManyToOne
-    private Coach owner;
-    @OneToMany
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "coach_id", referencedColumnName = "id", columnDefinition = "integer")
+    private Coach coach;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "team")
     private Set<Athlete> athletes;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date createdOn;
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "team")
     private Set<MacroCycle> allPrograms;
 
     public Team() {}
 
-    public Team(String name, Coach owner, Set<Athlete> athletes, Date createdOn, Set<MacroCycle> allPrograms) {
+    public Team(String name, Coach coach, Set<Athlete> athletes, Date createdOn, Set<MacroCycle> allPrograms) {
         this.name = name;
-        this.owner = owner;
+        this.coach = coach;
         this.athletes = athletes;
         this.createdOn = createdOn;
         this.allPrograms = allPrograms;
+    }
+
+    public Team(String name) {
+        this.name = name;
     }
 
     public BigInteger getId() {
@@ -47,12 +53,12 @@ public class Team {
         this.name = name;
     }
 
-    public Coach getOwner() {
-        return owner;
+    public Coach getCoach() {
+        return coach;
     }
 
-    public void setOwner(Coach owner) {
-        this.owner = owner;
+    public void setCoach(Coach coach) {
+        this.coach = coach;
     }
 
     public Set<Athlete> getAthletes() {
@@ -84,7 +90,7 @@ public class Team {
         return "Team{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", owner=" + owner +
+                ", coach=" + coach +
                 ", athletes=" + athletes +
                 ", createdOn=" + createdOn +
                 ", allPrograms=" + allPrograms +

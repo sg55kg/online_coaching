@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/data/macroCycle")
-@CrossOrigin
+@CrossOrigin("*")
 public class MacroCycleController {
 
     private final MacroCycleService macroCycleService;

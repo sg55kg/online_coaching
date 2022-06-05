@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -28,5 +29,15 @@ public class CoachServiceImpl implements CoachService{
     @Override
     public Optional<Coach> getCoachById(BigInteger coachId) {
         return coachRepository.findById(coachId);
+    }
+
+    @Override
+    public void addCoach(Coach coach) {
+        coachRepository.save(coach);
+    }
+
+    @Override
+    public List<Coach> getAllCoaches() {
+        return coachRepository.findAll();
     }
 }

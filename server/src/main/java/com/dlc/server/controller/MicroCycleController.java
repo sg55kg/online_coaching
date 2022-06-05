@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/data/microCycle")
-@CrossOrigin
+@CrossOrigin("*")
 public class MicroCycleController {
 
     private final MicroCycleService microCycleService;

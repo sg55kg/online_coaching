@@ -37,6 +37,7 @@ export const AdminProvider: React.FC<{children: React.ReactNode}> = ({ children 
     const callGetAllAthletes: (coachId: number) => Promise<void> = async (coachId) => {
         try {
             const res = await getAllCoachAthletes(coachId)
+            console.log(res.status)
             setAthletes(res.data)
         } catch (error) {
             console.log(error)
@@ -47,7 +48,7 @@ export const AdminProvider: React.FC<{children: React.ReactNode}> = ({ children 
         if(currentUser && currentUser.id && athletes.length < 1) {
             callGetAllAthletes(currentUser.id)
         }
-    },[currentUser])
+    },[])
 
     const value = {
         teams,

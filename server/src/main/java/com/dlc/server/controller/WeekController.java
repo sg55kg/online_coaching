@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/data/week")
-@CrossOrigin
+@CrossOrigin("*")
 public class WeekController {
 
     private final WeekServiceImpl weekService;

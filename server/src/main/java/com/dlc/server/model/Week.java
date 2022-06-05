@@ -27,8 +27,8 @@ public class Week {
     )
     private Set<Day> days;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "micro_cycle_id", nullable = true)
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "micro_cycle_id", nullable = true, referencedColumnName = "id", columnDefinition = "integer")
     private MicroCycle microCycle;
 
     private boolean isComplete;

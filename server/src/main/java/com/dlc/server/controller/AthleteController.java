@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/data/athlete")
-@CrossOrigin
+@CrossOrigin("*")
 public class AthleteController {
 
     @Autowired

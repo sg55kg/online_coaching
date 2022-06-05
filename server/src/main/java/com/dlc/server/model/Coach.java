@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table
+@Table(name = "coach")
 public class Coach {
 
     @Id
@@ -16,15 +16,16 @@ public class Coach {
     private String name;
     private String email;
     private String passwordHash;
-    @OneToMany(mappedBy = "team", fetch = FetchType.LAZY,
+    @OneToMany(mappedBy = "coach", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private Set<Team> teams;
-    @OneToMany(mappedBy = "athlete", fetch = FetchType.LAZY,
+    @OneToMany(mappedBy = "coach", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private Set<Athlete> athletes;
-    @OneToMany(mappedBy = "macro_cycle", fetch = FetchType.LAZY,
+    @OneToMany(mappedBy = "coach", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private Set<MacroCycle> programs;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date joinedOn;
     private Date lastLogin;
     private boolean isPaid;
@@ -42,6 +43,15 @@ public class Coach {
         this.programs = programs;
         this.joinedOn = joinedOn;
         this.lastLogin = lastLogin;
+    }
+
+    public Coach(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
+
+    public void setId(BigInteger id) {
+        this.id = id;
     }
 
     public BigInteger getId() {

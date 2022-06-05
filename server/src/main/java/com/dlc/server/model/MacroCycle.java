@@ -15,22 +15,26 @@ public class MacroCycle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private BigInteger id;
-
     @Temporal(TemporalType.TIMESTAMP)
     @Column(columnDefinition="TIMESTAMP WITHOUT TIMEZONE")
     private Date createdOn;
-
     private Date startDate;
-
     @OneToMany(
             mappedBy = "macroCycle",
             fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private Set<MicroCycle> microCycles;
-
     private int totalReps;
-
     private boolean isComplete;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "athlete_id", referencedColumnName = "id", columnDefinition = "integer")
+    private Athlete athlete;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "coach_id", referencedColumnName = "id", columnDefinition = "integer")
+    private Coach coach;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="team_id", referencedColumnName = "id", columnDefinition = "integer")
+    private Team team;
 
     public MacroCycle() {
 

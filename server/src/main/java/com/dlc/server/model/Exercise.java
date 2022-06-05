@@ -19,7 +19,7 @@ public class Exercise {
     private String exerciseType;
     private String variant;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "day_id", nullable = true)
+    @JoinColumn(name = "day_id", nullable = true, referencedColumnName = "id", columnDefinition = "integer")
     private Day day;
 
 

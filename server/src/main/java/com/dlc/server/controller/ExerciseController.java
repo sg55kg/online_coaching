@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/data/exercise")
-@CrossOrigin
+@CrossOrigin("*")
 public class ExerciseController {
 
     private final ExerciseService exerciseService;

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/data/day")
-@CrossOrigin
+@CrossOrigin("*")
 public class DayController {
 
     private final DayService dayService;

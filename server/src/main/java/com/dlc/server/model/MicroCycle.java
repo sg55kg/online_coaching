@@ -25,7 +25,7 @@ public class MicroCycle {
     )
     private Set<Week> weeks;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "macro_cycle_id", nullable = true)
+    @JoinColumn(name = "macro_cycle_id", nullable = true, referencedColumnName = "id", columnDefinition = "integer")
     private MacroCycle macroCycle;
     private int totalReps;
     private boolean isComplete;
