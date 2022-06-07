@@ -6,6 +6,7 @@ import com.dlc.server.service.CoachServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigInteger;
@@ -31,6 +32,17 @@ public class CoachController {
         }
     }
 
+    @GetMapping("/{coachEmail}")
+    public ResponseEntity<?> getCoachByEmail(@PathVariable("coachEmail") String email) {
+        Optional<Coach> coach = coachService.getCoachByEmail(email);
+        if(coach.isPresent()) {
+            return new ResponseEntity<>(coach.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+  //  @PreAuthorize()
     @GetMapping("/{coachId}")
     public ResponseEntity<Coach> getCoach(@PathVariable("coachId") BigInteger coachId) {
         Optional<Coach> coachO = coachService.getCoachById(coachId);
@@ -49,6 +61,7 @@ public class CoachController {
         List<Coach> coaches = coachService.getAllCoaches();
         return new ResponseEntity<>(coaches, HttpStatus.OK);
     }
+
 
 
 

@@ -40,4 +40,13 @@ public class CoachServiceImpl implements CoachService{
     public List<Coach> getAllCoaches() {
         return coachRepository.findAll();
     }
+
+    @Override
+    public Optional<Coach> getCoachByEmail(String email) {
+        Coach coach = coachRepository.findByEmail(email);
+        if(coach == null) {
+            // potentially trigger the creation of the coach obj here, checking for auth at controller level as well?
+        }
+        return Optional.of(coach);
+    }
 }

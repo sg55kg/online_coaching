@@ -1,7 +1,11 @@
 import { navigateToLoginPage, navigateToSignupPage } from './util/util'
 import Navbar from 'react-bootstrap/Navbar'
+import { useKeycloak } from '@react-keycloak/web'
 
 const Header = () => {
+
+    const { keycloak } = useKeycloak()
+
     return (   
         <div className="header-container">
             <div className="header-titles">
@@ -10,11 +14,18 @@ const Header = () => {
             </div>
             <div>
                 <button 
-                    onClick={navigateToSignupPage}
+                    onClick={() => navigateToSignupPage()}
                 >Get Started</button>
-                <button 
-                    onClick={navigateToLoginPage}
-                >Login</button>
+                {!keycloak.authenticated &&
+                    <button 
+                        onClick={() => keycloak.login()}
+                    >Login</button>
+                }
+                {!!keycloak.authenticated && 
+                    <button
+                        onClick={() => keycloak.logout()}
+                    >Sign Out</button>
+                }
             </div>
         </div>
     )

@@ -2,23 +2,28 @@ package com.dlc.server.controller;
 
 import com.dlc.server.model.Exercise;
 import com.dlc.server.service.ExerciseService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.dlc.server.service.ExerciseServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/data/exercise")
 @CrossOrigin("*")
 public class ExerciseController {
 
-    private final ExerciseService exerciseService;
+    @Autowired
+    private ExerciseServiceImpl exerciseService;
 
-    public ExerciseController(ExerciseService exerciseService) {
-        this.exerciseService = exerciseService;
-    }
-
+    @PostMapping("/add")
     public String add(Exercise exercise) {
         exerciseService.save(exercise);
         return "Successfully saved Exercise";
+    }
+
+    @DeleteMapping("/delete/{id}")
+   // @PreAuthorize("hasRole('coach')")
+    public String delete(Exercise exercise) {
+        return null;
     }
 }

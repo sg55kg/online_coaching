@@ -2,6 +2,7 @@ package com.dlc.server.service;
 
 import com.dlc.server.model.MacroCycle;
 import com.dlc.server.repository.MacroCycleRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -9,11 +10,11 @@ import java.util.List;
 
 @Service
 public class MacroCycleServiceImpl implements MacroCycleService {
-    private final MacroCycleRepository macroCycleRepository;
 
-    public MacroCycleServiceImpl(MacroCycleRepository macroCycleRepository) {
-        this.macroCycleRepository = macroCycleRepository;
-    }
+    @Autowired
+    private MacroCycleRepository macroCycleRepository;
+
+
     @Override
     public List<MacroCycle> getMacroCycleByStartDate(Date startDate) {
         return null;

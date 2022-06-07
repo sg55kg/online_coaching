@@ -2,17 +2,16 @@ package com.dlc.server.service;
 
 import com.dlc.server.model.MicroCycle;
 import com.dlc.server.repository.MicroCycleRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class MicroCycleServiceImpl implements MicroCycleService {
 
-    private final MicroCycleRepository microCycleRepository;
+    @Autowired
+    private MicroCycleRepository microCycleRepository;
 
-    public MicroCycleServiceImpl(MicroCycleRepository theRepo) {
-        this.microCycleRepository = theRepo;
-    }
-
+    @Override
     public MicroCycle saveMicroCycle(MicroCycle microCycle) {
         return microCycleRepository.save(microCycle);
     }

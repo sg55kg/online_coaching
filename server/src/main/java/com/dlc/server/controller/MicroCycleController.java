@@ -4,6 +4,7 @@ import com.dlc.server.model.MacroCycle;
 import com.dlc.server.model.MicroCycle;
 import com.dlc.server.service.MicroCycleService;
 import com.dlc.server.service.MicroCycleServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,11 +14,8 @@ import java.util.List;
 @CrossOrigin("*")
 public class MicroCycleController {
 
-    private final MicroCycleService microCycleService;
-
-    public MicroCycleController(MicroCycleService microCycleService) {
-        this.microCycleService = microCycleService;
-    }
+    @Autowired
+    private MicroCycleServiceImpl microCycleService;
 
     @PostMapping("/add")
     public String addMicroCycle(MicroCycle microCycle) {

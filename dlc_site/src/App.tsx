@@ -3,8 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { AuthProvider } from './contexts/AuthContext'
 import { useEffect } from 'react'
 import { getAllMacroCycles, saveMacroCycle } from './api/macroCycles'
-import WriteWeek from './components/WriteWeek/WriteWeek';
-import Header from './components/Header/Header';
 import LandingPage from './pages/LandingPage/LandingPage'
 import NotFound from './pages/404/NotFound'
 import Login from './pages/Login/Login'
@@ -27,6 +25,7 @@ function App() {
   //   test()
   // },[])
 
+
   useEffect(() => {
     const test = async () => {
       try {
@@ -36,7 +35,7 @@ function App() {
         console.log(error)
       }
     }
-    //test()
+    
   },[])
 
   useEffect(() => {

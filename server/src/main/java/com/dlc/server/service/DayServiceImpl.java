@@ -8,11 +8,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class DayServiceImpl implements DayService {
 
-    private final DayRepository dayRepository;
-
-    public DayServiceImpl(DayRepository theRepo) {
-        this.dayRepository = theRepo;
-    }
+    @Autowired
+    private DayRepository dayRepository;
 
     @Override
     public Day saveDay(Day theDay) {

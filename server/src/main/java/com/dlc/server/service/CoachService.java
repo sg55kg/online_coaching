@@ -16,4 +16,5 @@ public interface CoachService {
     public Optional<Coach> getCoachById(BigInteger coachId);
     public void addCoach(Coach coach);
     public List<Coach> getAllCoaches();
+    public Optional<Coach> getCoachByEmail(String email);
 }

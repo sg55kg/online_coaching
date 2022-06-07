@@ -1,10 +1,17 @@
 package com.dlc.server.controller;
 
+import com.dlc.server.model.Athlete;
 import com.dlc.server.repository.AthleteRepository;
+import com.dlc.server.service.AthleteServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.math.BigInteger;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/data/athlete")
@@ -12,7 +19,25 @@ import org.springframework.web.bind.annotation.RestController;
 public class AthleteController {
 
     @Autowired
-    private AthleteRepository athleteRepository;
+    private AthleteServiceImpl athleteService;
 
+    @GetMapping("/{athleteID}")
+    public ResponseEntity<?> getAthleteById(@RequestParam("athleteID") BigInteger athleteId) {
+        Optional<Athlete> athlete = athleteService.getAthleteById(athleteId);
+        if(athlete.isPresent()) {
+            return new ResponseEntity<>(athlete.get(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 
+    @GetMapping("/{coachID}")
+    public ResponseEntity<?> getAthletesByCoach(@RequestParam("coachID") BigInteger coachId) {
+        Set<Athlete> athletes = athleteService.getAthletesByCoach(coachId);
+        if(athletes.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(athletes, HttpStatus.OK);
+        }
+    }
 }

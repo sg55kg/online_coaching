@@ -8,9 +8,7 @@ const rootElement = document.getElementById('root')
 if(!rootElement) throw new Error('Failed to load root element')
 const root = createRoot(rootElement)
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <App />
 )
 
 

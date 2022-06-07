@@ -2,17 +2,16 @@ package com.dlc.server.service;
 
 import com.dlc.server.model.Week;
 import com.dlc.server.repository.WeekRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class WeekServiceImpl implements WeekService {
 
-    private final WeekRepository weekRepository;
+    @Autowired
+    private WeekRepository weekRepository;
 
-    public WeekServiceImpl(WeekRepository theRepo) {
-        this.weekRepository = theRepo;
-    }
-
+    @Override
     public Week saveWeek(Week week) {
         return weekRepository.save(week);
     }

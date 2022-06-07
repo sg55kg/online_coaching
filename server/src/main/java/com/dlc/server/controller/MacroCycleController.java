@@ -2,7 +2,10 @@ package com.dlc.server.controller;
 
 import com.dlc.server.model.MacroCycle;
 import com.dlc.server.service.MacroCycleService;
+import com.dlc.server.service.MacroCycleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,11 +15,8 @@ import java.util.List;
 @CrossOrigin("*")
 public class MacroCycleController {
 
-    private final MacroCycleService macroCycleService;
-
-    public MacroCycleController(MacroCycleService macroCycleService) {
-        this.macroCycleService = macroCycleService;
-    }
+    @Autowired
+    private MacroCycleServiceImpl macroCycleService;
 
     @PostMapping("/add")
     public String add(@RequestBody MacroCycle macroCycle) {
@@ -25,9 +25,10 @@ public class MacroCycleController {
     }
 
     @GetMapping("/getAll")
-    public List<MacroCycle> getAll() {
+    public ResponseEntity<?> getAll() {
         List<MacroCycle> res = macroCycleService.getAllMacroCycles();
-        return res;
+        if(res.isEmpty()) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
 
