@@ -3,7 +3,7 @@ import Header from "../../components/Header/Header"
 const AthletePortal = () => {
     return (
         <div>
-            <Header />
+            {/* <Header /> */}
         </div>
     )
 }

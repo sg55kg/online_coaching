@@ -19,6 +19,8 @@ export const useAuth = () => {
 
 export const AuthProvider: React.FC<{children: React.ReactNode}> = ({ children }) => {
     const [currentUser, setCurrentUser] = useState<any>(null)
+    const [userData, setUserData] = useState<any>(null)
+    const [loading, setLoading] = useState<boolean>(false)
 
     useEffect(() => { 
         let flag = true
@@ -31,6 +33,21 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({ children }
             flag = false
         }
     },[keycloak.authenticated])
+
+    /* 
+    useEffect(() => {
+        const unsubscribe = async (email) => {
+            if hasRealmRole('coach'), get coach obj.
+                if can't find coach obj, create one.
+            else if hasRealmRole('athete'), get athlete obj.
+                if can't find athlete obj, create one.
+            setUserData(obj)
+        }
+        if(!userData) {
+            return unsubscribe(currentUser.idTokenParsed.email)
+        }
+    },[])
+    */
 
     const value = {
         currentUser

@@ -11,6 +11,7 @@ import PrivateRoute from './routes/PrivateRoute'
 import AdminPortal from './pages/AdminPortal/AdminPortal'
 import AthletePortal from './pages/AthletePortal/AthletePortal'
 import { getToken } from './api/auth/getToken'
+import { adminRoutes } from './routes/AdminRoutes'
 
 function App() {
   //useEffect(() => {
@@ -73,7 +74,15 @@ function App() {
             <Route path="*" element={<NotFound />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/admin" element={<AdminPortal />} />
+
+            <Route path="/coach" element={<AdminPortal />}>
+              {adminRoutes.map((route) => {
+                return (
+                  <Route path={route.path} element={route.element} />
+                )
+              })}
+            </Route>
+            
             <Route path="/:athlete" element={<AthletePortal />} />
           </Routes>
         </div>
