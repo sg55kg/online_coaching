@@ -7,6 +7,7 @@ const AdminDashboard: React.FC = () => {
         <div>
             <Container style={{ backgroundColor: 'grey' }}>
                 Activity Feed
+                
             </Container>
             <ChatButton rootPath="/coach" />
         </div>

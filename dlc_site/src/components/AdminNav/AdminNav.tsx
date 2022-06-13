@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react"
-import { Drawer, ScrollArea, Navbar } from "@mantine/core"
+import { Drawer, ScrollArea, Navbar, Divider } from "@mantine/core"
 import { useContext } from "react"
 import { Link } from "react-router-dom"
 import { AdminContext, useAdminContext } from "../../contexts/AdminContext"
@@ -23,18 +23,18 @@ const AdminNav: React.FC<{viewNav: boolean, setViewNav: Dispatch<SetStateAction<
             title="Title"
             hidden={!viewNav}
             position={{ top: 0, left: 0 }}
-            width={{ base: 600 }}
+            width={{ sm: 500, lg: 400 }}
+            style={{ backgroundColor: 'rgb(79, 79, 80)', border: 'none' }}
         >
-            <div>
-                
+            <Navbar.Section>
+                <h3>
+                    Teams
+                </h3>
                 <div>
-                    <h3>
-                        Teams
-                    </h3>
-                    <ScrollArea style={{ height: 200 }}>
+                    <ScrollArea style={{ height: 200, color: 'yellow' }}>
                         {dummyTeams.map(team => {
                             return (
-                                <div style={{ backgroundColor: 'black', padding: '1em' }} key={team.name}>
+                                <div style={{ backgroundColor: 'rgb(51, 51, 51)', padding: '1em' }} key={team.name}>
                                     {team.name}
                                 </div>
                             )
@@ -42,7 +42,11 @@ const AdminNav: React.FC<{viewNav: boolean, setViewNav: Dispatch<SetStateAction<
                     </ScrollArea>
                     <p>+ Add Team</p>
                 </div>
-            </div>
+            </Navbar.Section>
+            <Divider style={{ border: '1px solid black' }} />
+                
+            
+            
             
             
         </Navbar>

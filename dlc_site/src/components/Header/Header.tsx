@@ -1,8 +1,10 @@
 import React, { Dispatch, SetStateAction, useState } from 'react'
 import { navigateToLoginPage, navigateToSignupPage } from './util/util'
-import { Burger, Button } from '@mantine/core'
+import { Burger, Button, Divider, Menu } from '@mantine/core'
 import { useKeycloak } from '@react-keycloak/web'
 import AdminNav from '../AdminNav/AdminNav'
+import { FiSettings } from 'react-icons/fi'
+import { BsChat, BsDoorOpen } from 'react-icons/bs'
 
 const Header: React.FC<{viewNav: boolean, setViewNav: Dispatch<SetStateAction<boolean>>}> = ({ viewNav, setViewNav }) => {
 
@@ -16,7 +18,6 @@ const Header: React.FC<{viewNav: boolean, setViewNav: Dispatch<SetStateAction<bo
 
                 <div className="header-titles">
                     <h1 className="site-title-heading">Site Title</h1>
-                    <h5 className="site-location-subheader"><i>Specific Page Subtitle</i></h5>
                 </div>
             </div>
             
@@ -36,10 +37,18 @@ const Header: React.FC<{viewNav: boolean, setViewNav: Dispatch<SetStateAction<bo
                     </>
                 }
                 {!!keycloak.authenticated && 
-                    <button
-                        onClick={() => keycloak.logout()}
-                    >Sign Out</button>
+                    <Menu>
+                        <Menu.Label>Options</Menu.Label>
+                        <Menu.Item icon={<FiSettings />}>Settings</Menu.Item>
+                        <Menu.Item icon={<BsChat />}>Chat</Menu.Item>
+                        <Divider />
+                        <Menu.Item
+                            icon={<BsDoorOpen />}
+                            onClick={() => keycloak.logout()}
+                        >Sign Out</Menu.Item>
+                    </Menu>
                 }
+                
             </div>
         </div>
     )
