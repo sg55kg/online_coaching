@@ -4,7 +4,8 @@ import { Burger, Button, Divider, Menu } from '@mantine/core'
 import { useKeycloak } from '@react-keycloak/web'
 import AdminNav from '../AdminNav/AdminNav'
 import { FiSettings } from 'react-icons/fi'
-import { BsChat, BsDoorOpen } from 'react-icons/bs'
+import { BsCalendar3, BsChat, BsDoorOpen } from 'react-icons/bs'
+import { Link } from 'react-router-dom'
 
 const Header: React.FC<{viewNav: boolean, setViewNav: Dispatch<SetStateAction<boolean>>}> = ({ viewNav, setViewNav }) => {
 
@@ -23,7 +24,7 @@ const Header: React.FC<{viewNav: boolean, setViewNav: Dispatch<SetStateAction<bo
             
             <div>
                 
-                {!keycloak.authenticated &&
+                {false && //!keycloak.authenticated &&
                     <>
                         <Button 
                             onClick={() => navigateToSignupPage()}
@@ -36,17 +37,26 @@ const Header: React.FC<{viewNav: boolean, setViewNav: Dispatch<SetStateAction<bo
                         >Login</Button>
                     </>
                 }
-                {!!keycloak.authenticated && 
-                    <Menu>
-                        <Menu.Label>Options</Menu.Label>
-                        <Menu.Item icon={<FiSettings />}>Settings</Menu.Item>
-                        <Menu.Item icon={<BsChat />}>Chat</Menu.Item>
-                        <Divider />
-                        <Menu.Item
-                            icon={<BsDoorOpen />}
-                            onClick={() => keycloak.logout()}
-                        >Sign Out</Menu.Item>
-                    </Menu>
+                { true && //!!keycloak.authenticated && 
+                    // <Menu>
+                    //     <Menu.Label>Options</Menu.Label>
+                    //     <Menu.Item icon={<FiSettings />}>Settings</Menu.Item>
+                    //     <Menu.Item icon={<BsChat />}>Chat</Menu.Item>
+                    //     <Divider />
+                    //     <Menu.Item
+                    //         icon={<BsDoorOpen />}
+                    //         onClick={() => keycloak.logout()}
+                    //     >Sign Out</Menu.Item>
+                    // </Menu>
+                    <div>
+                        <Button
+                            component={Link}
+                            to="coach/calendar"
+                            variant="outline"
+                        >
+                            <BsCalendar3 style={{ fontSize: '1.5em' }} />
+                        </Button>
+                    </div>
                 }
                 
             </div>
