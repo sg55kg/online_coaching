@@ -47,8 +47,10 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
         httpSecurity.cors();
         httpSecurity.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/data/*")
+                .antMatchers("/data/**")
                 .hasRole("coach")
+                .antMatchers("/data/**")
+                .hasRole("athlete")
                 .anyRequest()
                 .permitAll();
     }

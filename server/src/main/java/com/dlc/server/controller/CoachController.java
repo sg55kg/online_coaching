@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+@PreAuthorize("hasRole('coach') || hasRole('athlete')")
 @RestController
 @RequestMapping("/data/coach")
 @CrossOrigin("*")
@@ -32,8 +33,8 @@ public class CoachController {
         }
     }
 
-    @GetMapping("/{coachEmail}")
-    public ResponseEntity<?> getCoachByEmail(@PathVariable("coachEmail") String email) {
+    @GetMapping(path = "/email/{email}")
+    public ResponseEntity<?> getCoachByEmail(@PathVariable("email") String email) {
         Optional<Coach> coach = coachService.getCoachByEmail(email);
         if(coach.isPresent()) {
             return new ResponseEntity<>(coach.get(), HttpStatus.OK);
@@ -43,7 +44,7 @@ public class CoachController {
     }
 
   //  @PreAuthorize()
-    @GetMapping("/{coachId}")
+    @GetMapping(path = "/id")
     public ResponseEntity<Coach> getCoach(@PathVariable("coachId") BigInteger coachId) {
         Optional<Coach> coachO = coachService.getCoachById(coachId);
         Coach coach = coachO.get();
@@ -51,9 +52,9 @@ public class CoachController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Coach> addCoach(Coach coach) {
+    public ResponseEntity<Coach> addCoach(@RequestBody Coach coach) {
         coachService.addCoach(coach);
-        return new ResponseEntity<Coach>(coach, HttpStatus.OK);
+        return new ResponseEntity<Coach>(coach, HttpStatus.CREATED);
     }
 
     @GetMapping("/all")
