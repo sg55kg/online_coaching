@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom'
 const Header: React.FC<{viewNav: boolean, setViewNav: Dispatch<SetStateAction<boolean>>}> = ({ viewNav, setViewNav }) => {
 
 
+
     const { keycloak } = useKeycloak()
 
     return (   
@@ -38,25 +39,27 @@ const Header: React.FC<{viewNav: boolean, setViewNav: Dispatch<SetStateAction<bo
                     </>
                 }
                 { true && //!!keycloak.authenticated && 
-                    // <Menu>
-                    //     <Menu.Label>Options</Menu.Label>
-                    //     <Menu.Item icon={<FiSettings />}>Settings</Menu.Item>
-                    //     <Menu.Item icon={<BsChat />}>Chat</Menu.Item>
-                    //     <Divider />
-                    //     <Menu.Item
-                    //         icon={<BsDoorOpen />}
-                    //         onClick={() => keycloak.logout()}
-                    //     >Sign Out</Menu.Item>
-                    // </Menu>
+                <>
+                    <Menu>
+                        <Menu.Label>Options</Menu.Label>
+                        <Menu.Item icon={<FiSettings />}>Settings</Menu.Item>
+                        <Menu.Item icon={<BsChat />}>Chat</Menu.Item>
+                        <Divider />
+                        <Menu.Item
+                            icon={<BsDoorOpen />}
+                            onClick={() => keycloak.logout()}
+                        >Sign Out</Menu.Item>
+                    </Menu>
                     <div>
                         <Button
                             component={Link}
-                            to="coach/calendar"
+                            to="calendar"
                             variant="outline"
                         >
                             <BsCalendar3 style={{ fontSize: '1.5em' }} />
                         </Button>
                     </div>
+                    </>
                 }
                 
             </div>

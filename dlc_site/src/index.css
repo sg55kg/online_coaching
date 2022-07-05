@@ -134,3 +134,33 @@ code {
 }
 
 
+.calendarbase-custom > div {
+  width: 100vw;
+  /* display: flex; */
+}
+
+.month-custom {
+  /* margin: 0 auto; */
+}
+
+.month-custom > table {
+  /* margin: auto; */
+  margin-right: 0;
+  margin-left: 0;
+  /* max-width: 99%; */
+  display: flex;
+  text-indent: 100px;
+}
+
+.month-custom > table > tbody > tr {
+  width: 100%
+}
+
+@media screen and (max-width: 500px ) {
+  .mantine-bm461 {
+    width: 100%;
+  }
+}
+
+
+

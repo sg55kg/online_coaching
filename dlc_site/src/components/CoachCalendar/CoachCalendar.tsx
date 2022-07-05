@@ -9,7 +9,7 @@ const CoachCalendar:
     }) => {
 
     return (
-        <div>
+        <div style={{ width: '100%' }}> 
             <Calendar 
                 value={selectedDate}
                 onChange={setSelectedDate}
@@ -22,9 +22,23 @@ const CoachCalendar:
                     )
                 }}
                 styles={{
-                    day: { color: 'white' },
+                    day: { 
+                        color: 'white', 
+                        fontSize: '1.1em' 
+                    },
+                    cell: { 
+                        //padding: '.5em' 
+                    },
                     weekend: { color: 'white' },
+                    calendarHeaderLevel: { color: 'white' },
+                    calendarBase: { width: '100%', maxWidth: '100vw' },
+                    month: { margin: '0' } 
                 }}
+                classNames={{
+                    calendarBase: 'calendarbase-custom',
+                    month: 'month-custom'
+                }} 
+                style={{ width: '100%', marginRight: 0, maxWidth: '100%' }} 
             />
         </div>
     )

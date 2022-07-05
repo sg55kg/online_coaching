@@ -1,10 +1,96 @@
 import { useState } from 'react'
-import { Card, Divider } from '@mantine/core'
+import { Card, Divider, Accordion } from '@mantine/core'
+import { isMobile } from 'react-device-detect'
 import CoachCalendar from '../../../components/CoachCalendar/CoachCalendar'
 import WriteWeek from '../../../components/WriteWeek/WriteWeek'
+import NewProgramModal from '../../../components/NewProgramModal/NewProgramModal'
+
 
 const ProgramPage: React.FC = () => {
     const [selectedDate, setSelectedDate] = useState<Date | null>(null)
+    const [viewProgramModal, setViewProgramModal] = useState<boolean>(false)
+
+    const fakeAthleteData = [
+        {
+            name: 'AJ Flores',
+            age: 23,
+            programs: []
+        },
+        {
+            name: 'Chris Ortiz',
+            age: 27,
+            programs: []
+        },
+        {
+            name: 'Michael Degrassi',
+            age: 26,
+            programs: []
+        }
+    ]
+
+    if(isMobile) {
+        return (
+            <div
+                style={{ width: '100%' }}
+            >
+                <Accordion
+                    style={{ width: '100%' }}
+                    styles={{
+                        label: {
+                            color: 'white'
+                        },
+                        control: {
+                            color: 'white'
+                        },
+                        content: {
+                            padding: '1em'
+                        },
+                        contentInner: {
+                            padding: 0
+                        }
+                    }}
+                >
+                    <Accordion.Item style={{ padding: 0 }} label="View Calendar">
+                        <CoachCalendar 
+                            selectedDate={selectedDate}
+                            setSelectedDate={setSelectedDate}
+                        />
+                        {selectedDate &&
+                            <div style={{ color: 'white', textAlign: 'left' }}>
+                                <div style={{ paddingTop: '.5em', backgroundColor: '#1f232f' }}>
+                                    {fakeAthleteData.map((athlete, index) => {
+                                        return (
+                                            <div 
+                                                key={index}
+                                                style={{ paddingBottom: '.75em', display: 'flex' }}
+                                            >
+                                                <p>{athlete.name}</p>
+                                                <button
+                                                    onClick={() => setViewProgramModal(true)}
+                                                >
+                                                    Program btn
+                                                </button>
+                                            </div>
+                                        )
+                                    })}
+                                </div>
+                            </div>
+                        }
+                    </Accordion.Item>
+                    <Accordion.Item style={{ padding: 0 }} label="Activity">
+
+                    </Accordion.Item>
+                </Accordion>
+                {viewProgramModal &&
+                    <NewProgramModal 
+                        viewProgramModal={viewProgramModal} 
+                        setViewProgramModal={setViewProgramModal} 
+                        selectedDate={selectedDate}
+                    />
+                }
+            </div>
+        )
+    }
 
     console.log(selectedDate)
     return (

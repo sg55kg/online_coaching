@@ -13,6 +13,8 @@ public class WeekServiceImpl implements WeekService {
 
     @Override
     public Week saveWeek(Week week) {
-        return weekRepository.save(week);
+        Week newWeek = weekRepository.save(week);
+        System.out.println(newWeek);
+        return newWeek;
     }
 }

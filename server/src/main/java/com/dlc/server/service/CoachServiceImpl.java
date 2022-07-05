@@ -32,8 +32,8 @@ public class CoachServiceImpl implements CoachService{
     }
 
     @Override
-    public void addCoach(Coach coach) {
-        coachRepository.save(coach);
+    public Coach addCoach(Coach coach) {
+        return coachRepository.save(coach);
     }
 
     @Override

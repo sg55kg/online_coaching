@@ -7,4 +7,5 @@ import java.util.List;
 public interface ExerciseService {
     public List<Exercise> getExerciseByType(String type);
     public void save(Exercise exercise);
+
 }

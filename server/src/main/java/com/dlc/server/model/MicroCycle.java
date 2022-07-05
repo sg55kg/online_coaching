@@ -52,6 +52,10 @@ public class MicroCycle {
         this.isComplete = isComplete;
     }
 
+    public MicroCycle() {
+
+    }
+
     public BigInteger getId() {
         return id;
     }

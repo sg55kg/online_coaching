@@ -4,8 +4,8 @@ import ChatPage from '../pages/ChatPage/ChatPage'
 
 
 export const adminRoutes = [
-    { path: '/coach/home', element: <AdminDashboard /> },
-    { path: '/coach/chat', element: <ChatPage /> },
-    { path: '/coach/calendar', element: <ProgramPage /> }
+    { path: 'home', element: <AdminDashboard /> },
+    { path: 'chat', element: <ChatPage /> },
+    { path: 'calendar', element: <ProgramPage /> }
 ]
 

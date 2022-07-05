@@ -19,6 +19,7 @@ public class MacroCycle {
     @Column(columnDefinition="TIMESTAMP WITHOUT TIMEZONE")
     private Date createdOn;
     private Date startDate;
+    private Date endDate;
     @OneToMany(
             mappedBy = "macroCycle",
             fetch = FetchType.LAZY,
@@ -106,6 +107,38 @@ public class MacroCycle {
 
     public void setTotalReps(int totalReps) {
         this.totalReps = totalReps;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public Athlete getAthlete() {
+        return athlete;
+    }
+
+    public void setAthlete(Athlete athlete) {
+        this.athlete = athlete;
+    }
+
+    public Coach getCoach() {
+        return coach;
+    }
+
+    public void setCoach(Coach coach) {
+        this.coach = coach;
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
     }
 
     @Override

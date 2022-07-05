@@ -53,7 +53,7 @@ public class CoachController {
 
     @PostMapping("/add")
     public ResponseEntity<Coach> addCoach(@RequestBody Coach coach) {
-        coachService.addCoach(coach);
+        Coach newCoach = coachService.addCoach(coach);
         return new ResponseEntity<Coach>(coach, HttpStatus.CREATED);
     }
 
